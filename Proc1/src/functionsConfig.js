@@ -1,70 +1,68 @@
 export const FUNCTIONS = [
     {
-        titulo: "Ver Nombre de la Empresa",
-        descripcion: "Ver cual es el nombre de registro de la empresa a gestionar",
+        titulo: "Ver Nombre de la Clínica",
+        descripcion: "Consultar el nombre registrado de la clínica veterinaria",
         nombreFuncion: "ver_nombre",
         soloLectura: "1",
-        inputs: [
-        ]
+        inputs: []
     },
 
     {
-        titulo: "Agregar Cliente",
-        descripcion: "Registra un nuevo cliente en la empresa con nivel inicial Cobre.",
+        titulo: "Registrar Nueva Mascota",
+        descripcion: "Registra una nueva mascota en el sistema con estado inicial Saludable.",
         nombreFuncion: "agregar_cliente",
         soloLectura: "0",
         inputs: [
-            // Nota: 'empresa' (primer argumento en Move) se manejará automáticamente con empresaId
-            { name: "nombre_cliente", type: "string", label: "Nombre Completo" },
-            { name: "direccion_facturacion", type: "string", label: "Dirección" },
-            { name: "ano_de_registro", type: "u8", label: "Año Registro (ej. 23)" },
-            { name: "id_cliente", type: "u16", label: "ID Único Cliente" }
+            { name: "nombre_cliente", type: "string", label: "Nombre de la Mascota" },
+            { name: "direccion_facturacion", type: "string", label: "Dirección del Dueño" },
+            { name: "ano_de_registro", type: "u8", label: "Año de Registro (ej. 24)" },
+            { name: "id_cliente", type: "u16", label: "ID Único de Mascota" }
         ]
     },
     {
-        titulo: "Agregar Servicio",
-        descripcion: "Añade un servicio al historial de un cliente existente.",
+        titulo: "Agregar Tratamiento",
+        descripcion: "Añade un tratamiento al historial médico de la mascota.",
         nombreFuncion: "agregar_servicio",
         soloLectura: "0",
         inputs: [
-            { name: "id_cliente", type: "u16", label: "ID del Cliente" },
-            { name: "servicio", type: "string", label: "Nombre del Servicio" }
+            { name: "id_cliente", type: "u16", label: "ID de la Mascota" },
+            { name: "servicio", type: "string", label: "Tratamiento/Procedimiento" }
         ]
     },
     {
-        titulo: "Cambiar Nivel a Oro",
-        descripcion: "Actualiza el nivel de un cliente a Oro (15% descuento).",
+        titulo: "Actualizar a Paciente Prioritario",
+        descripcion: "Marcar mascota como paciente prioritario (atención especial).",
         nombreFuncion: "cambiar_nivel_a_oro",
         soloLectura: "0",
         inputs: [
-            { name: "id_cliente", type: "u16", label: "ID del Cliente" }
+            { name: "id_cliente", type: "u16", label: "ID de la Mascota" }
         ]
     },
     {
-        titulo: "Aplicar Descuento",
-        descripcion: "Aplicar un descuento segun el nivel actual del cliente",
+        titulo: "Ver Beneficios de Plan",
+        descripcion: "Consultar beneficios según el plan de la mascota",
         nombreFuncion: "aplicar_descuento",
         soloLectura: "1",
         inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
+            {name: "id_cliente", type:"u16", label: "ID de la Mascota"}
         ]
     },
     {
-        titulo: "Resumen de Usuario",
-        descripcion: "Ver el resumen y los datos generales de un usuario",
+        titulo: "Historial Médico",
+        descripcion: "Ver el resumen médico completo de la mascota",
         nombreFuncion: "ver_estado_cliente",
         soloLectura: "1",
         inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
+            {name: "id_cliente", type:"u16", label: "ID de la Mascota"}
         ]
     },
     {
-        titulo: "Retornar todo",
-        descripcion: "Retorna toda la informacion del usuario en su formato correspondiente",
+        titulo: "Expediente Completo",
+        descripcion: "Consultar toda la información de la mascota",
         nombreFuncion: "retornar_todo",
         soloLectura: "1",
         inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
+            {name: "id_cliente", type:"u16", label: "ID de la Mascota"}
         ]
     }
 ];
