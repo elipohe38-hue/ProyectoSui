@@ -1,70 +1,69 @@
-export const FUNCTIONS = [
-    {
-        titulo: "Ver Nombre de la Empresa",
-        descripcion: "Ver cual es el nombre de registro de la empresa a gestionar",
-        nombreFuncion: "ver_nombre",
-        soloLectura: "1",
-        inputs: [
-        ]
-    },
+import { useState } from "react"
 
-    {
-        titulo: "Agregar Cliente",
-        descripcion: "Registra un nuevo cliente en la empresa con nivel inicial Cobre.",
-        nombreFuncion: "agregar_cliente",
-        soloLectura: "0",
-        inputs: [
-            // Nota: 'empresa' (primer argumento en Move) se manejará automáticamente con empresaId
-            { name: "nombre_cliente", type: "string", label: "Nombre Completo" },
-            { name: "direccion_facturacion", type: "string", label: "Dirección" },
-            { name: "ano_de_registro", type: "u8", label: "Año Registro (ej. 23)" },
-            { name: "id_cliente", type: "u16", label: "ID Único Cliente" }
-        ]
-    },
-    {
-        titulo: "Agregar Servicio",
-        descripcion: "Añade un servicio al historial de un cliente existente.",
-        nombreFuncion: "agregar_servicio",
-        soloLectura: "0",
-        inputs: [
-            { name: "id_cliente", type: "u16", label: "ID del Cliente" },
-            { name: "servicio", type: "string", label: "Nombre del Servicio" }
-        ]
-    },
-    {
-        titulo: "Cambiar Nivel a Oro",
-        descripcion: "Actualiza el nivel de un cliente a Oro (15% descuento).",
-        nombreFuncion: "cambiar_nivel_a_oro",
-        soloLectura: "0",
-        inputs: [
-            { name: "id_cliente", type: "u16", label: "ID del Cliente" }
-        ]
-    },
-    {
-        titulo: "Aplicar Descuento",
-        descripcion: "Aplicar un descuento segun el nivel actual del cliente",
-        nombreFuncion: "aplicar_descuento",
-        soloLectura: "1",
-        inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
-        ]
-    },
-    {
-        titulo: "Resumen de Usuario",
-        descripcion: "Ver el resumen y los datos generales de un usuario",
-        nombreFuncion: "ver_estado_cliente",
-        soloLectura: "1",
-        inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
-        ]
-    },
-    {
-        titulo: "Retornar todo",
-        descripcion: "Retorna toda la informacion del usuario en su formato correspondiente",
-        nombreFuncion: "retornar_todo",
-        soloLectura: "1",
-        inputs: [
-            {name: "id_cliente", type:"u16", label: "ID del Cliente"}
-        ]
+
+
+function FormInicial({ ClientCall, estado, setNuevaEmpresa }) {
+    const funcion = "crear_empresa"
+    const [nombre, cambiarNombre] = useState("")
+
+    function enviar() {
+        ClientCall({
+            funcion,
+            args: [nombre]
+        })
     }
-];
+    
+    return(
+        <form style={{
+          display: "flex",
+          flexDirection: "column", // Los elementos uno debajo del otro
+          alignItems: "center", // Centrados horizontalmente
+          gap: "15px", // Espacio entre cada elemento
+          marginTop: "30px" // Un poco de aire arriba
+        }}>
+          
+          {/* 1. Input para el nombre */}
+          <input 
+            type="text" 
+            placeholder="¿Cuál sería el nombre de tu empresa?"
+            style={{
+              padding: "12px 20px",
+              fontSize: "16px",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+              width: "100%",
+              maxWidth: "400px", // Que no se haga demasiado ancho en pantallas grandes
+              textAlign: "center"
+            }}
+            onChange={(e) => cambiarNombre(e.target.value)} 
+          />
+
+          {/* 2. Botón principal */}
+          <button 
+            className='purple-button' 
+            // onClick={CrearEmpresa} <-- Asegúrate de llamar a tu función aquí, no en onSubmit del form por ahora
+            type="button" // Importante: evita que el form recargue la página al hacer clic
+            disabled={estado}
+            style={{ width: "100%", maxWidth: "300px" }}
+            onClick={() => enviar()}
+          >
+            Crear Empresa
+          </button>
+
+          {/* 3. Texto y enlace para los que ya tienen empresa */}
+          <p style={{ fontSize: "14px", color: "#ccc", marginTop: "10px" }}>
+            ¿Ya tienes una empresa creada?{' '}
+            <span 
+              style={{ color: "#8e44ad", cursor: "pointer", textDecoration: "underline", fontWeight: "bold" }}
+              onClick={() => setNuevaEmpresa(true)}
+            >
+              Da clic aquí
+            </span>
+          </p>
+
+        </form>
+    )
+}
+
+
+export default FormInicial
