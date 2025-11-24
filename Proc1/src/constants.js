@@ -1,4 +1,4 @@
-export const PACKAGE_ID = "0xabc0e8d9b05b46ea8b50f7183de8a235a8acffaf1254e428446a0fa659ef7c68"
+export const PACKAGE_ID = "0x994220e25a8042bd3a7f312a0ca681f4ecc0632f332ad79b28d1bdbc200269f3"
 
 export const APP_CONFIG = {
   NAME: "VetChain Pro",
